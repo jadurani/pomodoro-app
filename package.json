@@ -1,5 +1,11 @@
 {
   "name": "pomodoro-app",
+  "description": "My solution to the Frontend Mentor Challenge - Pomodoro App (https://www.frontendmentor.io/challenges/pomodoro-app-KBFnycJ6G)",
+  "author": {
+    "name": "Jadurani Davalos",
+    "email": "jadurani.davalos@gmail.com",
+    "url": "https://jadurani.me"
+  },
   "version": "0.1.0",
   "private": true,
   "scripts": {
