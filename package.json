@@ -6,6 +6,11 @@
     "email": "jadurani.davalos@gmail.com",
     "url": "https://jadurani.me"
   },
+  "engines": {
+    "node": ">=v18.15.0",
+    "npm": ">=9.5.0",
+    "yarn": "use-npm-for-now"
+  },
   "version": "0.1.0",
   "private": true,
   "scripts": {
