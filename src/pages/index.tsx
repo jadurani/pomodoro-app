@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { Kumbh_Sans, Roboto_Slab, Space_Mono } from "next/font/google";
 
 const KumbhSans = Kumbh_Sans({
@@ -17,9 +19,23 @@ const SpaceMono = Space_Mono({
 });
 
 export default function Home() {
+  const [selectedFont, setSelectedFont] = useState("");
+
   return (
     <>
-      <div className={`${SpaceMono.variable} font-mono`}>asfsf</div>
+      <button
+        onClick={() => setSelectedFont(`${KumbhSans.variable} font-sans`)}>
+        Sans
+      </button>
+      <button
+        onClick={() => setSelectedFont(`${RobotoSlab.variable} font-serif`)}>
+        Serif
+      </button>
+      <button
+        onClick={() => setSelectedFont(`${SpaceMono.variable} font-mono`)}>
+        Mono
+      </button>
+      <div className={selectedFont}>HELLO PHO</div>
     </>
   );
 }
