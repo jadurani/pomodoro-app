@@ -59,12 +59,10 @@ module.exports = {
       lg: "1200px",
       xl: "1536px",
     },
-    extend: {
-      fontFamily: {
-        sans: ["var(--font-kumbh-sans)", ...fontFamily.sans],
-        serif: ["var(--font-roboto-slab)", ...fontFamily.serif],
-        mono: ["var(--font-space-mono)", ...fontFamily.mono],
-      },
+    fontFamily: {
+      sans: ["var(--font-kumbh-sans)", ...fontFamily.sans],
+      serif: ["var(--font-roboto-slab)", ...fontFamily.serif],
+      mono: ["var(--font-space-mono)", ...fontFamily.mono],
     },
   },
   plugins: [],
