@@ -3,17 +3,18 @@ input {
 }
 
 input:checked ~ label {
-  color: #1E213F;
-  background-color: #F87070;
+  color: #1e213f;
+  background-color: #f87070;
 }
 
 label {
   cursor: pointer;
-  color: #D7E0FF;
+  color: #d7e0ff;
   transition: text;
   padding: 8px 16px;
   border-radius: 999px;
-  transition-property: color, background-color, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, box-shadow, transform, filter,
+    backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 300ms;
 }

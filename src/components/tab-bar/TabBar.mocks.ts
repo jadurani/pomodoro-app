@@ -1,25 +1,25 @@
-import { ITab } from '../tab/Tab';
-import { ITabBar } from './TabBar';
+import { ITab } from "../tab/Tab";
+import { ITabBar } from "./TabBar";
 
 const shortBreak: ITab = {
-  text: 'short break',
-  id: 'short-break',
+  text: "short break",
+  id: "short-break",
   isSelected: false,
 };
 
 const longBreak: ITab = {
-  text: 'long break',
-  id: 'long-break',
+  text: "long break",
+  id: "long-break",
   isSelected: false,
 };
 
 const pomodoro: ITab = {
-  text: 'pomodoro',
-  id: 'pomodoro',
+  text: "pomodoro",
+  id: "pomodoro",
   isSelected: false,
 };
 
 export const mockTabBarProps: ITabBar = {
   selectedTabID: pomodoro.id,
-  tabList: [shortBreak, longBreak, pomodoro]
+  tabList: [shortBreak, longBreak, pomodoro],
 };

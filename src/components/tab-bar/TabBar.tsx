@@ -8,7 +8,14 @@ export interface ITabBar {
 
 const TabBar: React.FC<ITabBar> = ({ selectedTabID, tabList }) => (
   <div>
-    {tabList.map(tab => <Tab key={tab.id} id={tab.id} text={tab.text} isSelected={tab.id === selectedTabID} />)}
+    {tabList.map((tab) => (
+      <Tab
+        key={tab.id}
+        id={tab.id}
+        text={tab.text}
+        isSelected={tab.id === selectedTabID}
+      />
+    ))}
   </div>
 );
 
