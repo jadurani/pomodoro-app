@@ -5,6 +5,16 @@ module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   // Ensure these match with .storybook/preview.js
   theme: {
+    colors: {
+      red: "#F87070",
+      teal: "#70F3F8",
+      magenta: "#D881F8",
+      grey1: "#D7E0FF",
+      grey2: "#EFF1FA",
+      white: "#FFFFFF",
+      indigo1: "#1E213F",
+      indigo2: "#161932",
+    },
     fontSize: {
       h1: [
         "100px",
