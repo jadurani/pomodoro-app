@@ -2,20 +2,21 @@ import "./Tab.module.css";
 
 export interface ITab {
   text: string;
-  tabID: string;
+  id: string;
   isSelected: boolean;
 }
 
-const Tab: React.FC<ITab> = ({ text, tabID, isSelected }) => (
+const Tab: React.FC<ITab> = ({ text, id, isSelected }) => (
   <>
     <input
       type="radio"
-      className=""
-      id={tabID}
       name="tabs"
+      className=""
+      id={id}
+      value={id}
       checked={isSelected}
     />
-    <label htmlFor={tabID} className="">
+    <label htmlFor={id} className="">
       {text}
     </label>
   </>
