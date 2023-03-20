@@ -1,28 +1,30 @@
-import { useState } from "react";
-
-import { Kumbh_Sans, Roboto_Slab, Space_Mono } from "next/font/google";
-
-const KumbhSans = Kumbh_Sans({
-  subsets: ["latin"],
-  weight: ["700"],
-  variable: "--font-kumbh-sans",
-});
-const RobotoSlab = Roboto_Slab({
-  subsets: ["latin"],
-  weight: ["700"],
-  variable: "--font-roboto-slab",
-});
-const SpaceMono = Space_Mono({
-  weight: ["700"],
-  variable: "--font-space-mono",
-  preload: false,
-});
+import { useContext, useState } from "react";
+import { KumbhSans, RobotoSlab, SpaceMono } from "./_app";
+import ThemeContext, { ThemeColors } from "@/state/theme/ThemeContext";
 
 export default function Home() {
+  const { color, setColor } = useContext(ThemeContext);
   const [selectedFont, setSelectedFont] = useState("");
 
   return (
     <>
+      {color}
+      <button
+        className="block cursor-pointer"
+        onClick={() => setColor(ThemeColors.RED)}>
+        RED
+      </button>
+      <button
+        className="block cursor-pointer"
+        onClick={() => setColor(ThemeColors.TEAL)}>
+        TEAL
+      </button>
+      <button
+        className="block cursor-pointer"
+        onClick={() => setColor(ThemeColors.MAGENTA)}>
+        MAGENTA
+      </button>
+
       <button
         onClick={() => setSelectedFont(`${KumbhSans.variable} font-sans`)}>
         Sans

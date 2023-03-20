@@ -6,9 +6,11 @@ module.exports = {
   // Ensure these match with .storybook/preview.js
   theme: {
     colors: {
+      // Theme colors
       red: "#F87070",
       teal: "#70F3F8",
       magenta: "#D881F8",
+      // Base colors
       grey1: "#D7E0FF",
       grey2: "#EFF1FA",
       white: "#FFFFFF",
