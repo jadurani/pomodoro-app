@@ -12,14 +12,7 @@ export default meta;
 export const SelectedPomodoro: StoryObj<typeof TabBar> = {
   render: (args) => <TabBar {...args} />,
 };
+
 SelectedPomodoro.args = {
   ...mockTabBarProps,
 } as ITabBar;
-
-// export const Unselected: StoryObj<typeof Tab> = {
-//   render: (args) => <Tab {...args} />
-// };
-
-// Unselected.args = {
-//   ...mockTabProps.unSelected,
-// } as ITab;

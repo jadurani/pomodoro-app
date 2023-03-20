@@ -7,7 +7,7 @@ export interface ITabBar {
 }
 
 const TabBar: React.FC<ITabBar> = ({ selectedTabID, tabList }) => (
-  <div>
+  <div className="inline-flex relative rounded-full gap-2 m-4 p-2 bg-indigo2">
     {tabList.map((tab) => (
       <Tab
         key={tab.id}
