@@ -1,14 +1,17 @@
-import { useContext, useState } from "react";
-import { KumbhSans, RobotoSlab, SpaceMono } from "./_app";
-import ThemeContext, { ThemeColors } from "@/state/theme/ThemeContext";
+import { useContext } from "react";
+import ThemeContext, {
+  NextFonts,
+  ThemeColors,
+  ThemeFonts,
+} from "@/state/theme/ThemeContext";
 
 export default function Home() {
-  const { color, setColor } = useContext(ThemeContext);
-  const [selectedFont, setSelectedFont] = useState("");
+  const { color, setColor, font, setFont } = useContext(ThemeContext);
 
   return (
     <>
-      {color}
+      <div className="block">Color: {color}</div>
+      <div className="block">Font: {font}</div>
       <button
         className="block cursor-pointer"
         onClick={() => setColor(ThemeColors.RED)}>
@@ -26,18 +29,21 @@ export default function Home() {
       </button>
 
       <button
-        onClick={() => setSelectedFont(`${KumbhSans.variable} font-sans`)}>
+        className="block cursor-pointer"
+        onClick={() => setFont(NextFonts[ThemeFonts.SANS])}>
         Sans
       </button>
       <button
-        onClick={() => setSelectedFont(`${RobotoSlab.variable} font-serif`)}>
+        className="block cursor-pointer"
+        onClick={() => setFont(NextFonts[ThemeFonts.SERIF])}>
         Serif
       </button>
       <button
-        onClick={() => setSelectedFont(`${SpaceMono.variable} font-mono`)}>
+        className="block cursor-pointer"
+        onClick={() => setFont(NextFonts[ThemeFonts.MONO])}>
         Mono
       </button>
-      <div className={selectedFont}>HELLO PHO</div>
+      <div className={font}>HELLO PHO</div>
     </>
   );
 }
