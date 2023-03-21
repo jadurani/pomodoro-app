@@ -11,7 +11,7 @@ const Tab: React.FC<ITab> = ({ text, id, isSelected }) => (
     <input
       type="radio"
       name="tabs"
-      className="d-none"
+      className="hidden"
       id={id}
       value={id}
       checked={isSelected}
