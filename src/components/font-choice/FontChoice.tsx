@@ -5,7 +5,7 @@ export interface IFontChoice {
   isSelected: boolean;
 }
 
-const Tab: React.FC<IFontChoice> = ({ id, isSelected }) => {
+const FontChoice: React.FC<IFontChoice> = ({ id, isSelected }) => {
   const selectedClasses = "bg-indigo2 text-white";
   const unselectedClasses = "bg-grey2 text-indigo1 text-opacity-75";
   return (
@@ -29,4 +29,4 @@ const Tab: React.FC<IFontChoice> = ({ id, isSelected }) => {
   );
 };
 
-export default Tab;
+export default FontChoice;

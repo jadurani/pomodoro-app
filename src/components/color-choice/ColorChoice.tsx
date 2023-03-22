@@ -13,7 +13,7 @@ const ButtonColor: Record<ThemeColors, `bg-${ThemeColors}`> = {
   [ThemeColors.MAGENTA]: "bg-magenta",
 };
 
-const Tab: React.FC<IColorChoice> = ({ id, color, isSelected }) => {
+const ColorChoice: React.FC<IColorChoice> = ({ id, color, isSelected }) => {
   return (
     <button
       id={id}
@@ -48,4 +48,4 @@ const Tab: React.FC<IColorChoice> = ({ id, color, isSelected }) => {
   );
 };
 
-export default Tab;
+export default ColorChoice;

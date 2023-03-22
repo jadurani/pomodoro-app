@@ -11,6 +11,6 @@ const meta: Meta<typeof TimeSettings> = {
 
 export default meta;
 
-export const SelectedColor: StoryObj<typeof TimeSettings> = {
+export const Base: StoryObj<typeof TimeSettings> = {
   render: (args) => <TimeSettings {...args} />,
 };
