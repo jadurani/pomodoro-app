@@ -13,14 +13,14 @@ const Input: React.FC<IInput> = ({ id, label, value }) => {
   return (
     <div className="inline-flex justify-between w-full items-center sm:flex-col sm:items-start">
       <label className="my-2 text-indigo1 opacity-25">{label}</label>
-      <div className="inline-flex items-center bg-grey2 p-4 rounded-lg text-body1">
+      <div className="inline-flex items-center max-w-[140px] bg-grey2 px-4 py-2 rounded-lg text-body1">
         <input
           id={id}
           type="number"
           value={minutes}
           onChange={(e) => setMinutes(+e.target.value)}
           placeholder="25"
-          className="outline-none bg-grey2 text-indigo1 font-bold"
+          className="outline-none bg-grey2 text-indigo1 font-bold w-10/12"
         />
         <span className="inline-flex flex-col">
           {/* Up button */}
