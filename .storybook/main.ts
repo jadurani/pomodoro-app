@@ -1,4 +1,6 @@
 import type { StorybookConfig } from "@storybook/nextjs";
+
+const path = require("path");
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
   /** Expose public folder to storybook as static */
@@ -8,6 +10,15 @@ const config: StorybookConfig = {
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
   ],
+  webpackFinal: async (config) => {
+    // @ts-ignore: Object is possibly 'null'.
+    config.resolve.alias = {
+      // @ts-ignore: Object is possibly 'null'.
+      ...config.resolve.alias,
+      "@": path.resolve(__dirname, "../src/"),
+    };
+    return config;
+  },
   framework: {
     name: "@storybook/nextjs",
     options: {},
