@@ -5,9 +5,6 @@ import { mockProps } from "./SettingsModal.mocks";
 const meta: Meta<typeof SettingsModal> = {
   title: "Components/Settings Modal",
   component: SettingsModal,
-  decorators: [
-    (Story) => <div className="bg-white h-full w-full p-4">{Story()}</div>,
-  ],
 };
 
 export default meta;

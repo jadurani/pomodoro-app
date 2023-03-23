@@ -14,25 +14,24 @@ const SettingsModal: React.FC<ISettingsModal> = ({ isOpen }) => {
   const [open, setOpen] = useState(isOpen);
 
   return (
-    <>
+    <div
+      className={`fixed top-0 left-0 h-full w-full sm:flex items-center justify-center overflow-x-hidden overflow-y-scroll ${
+        open ? "" : "hidden"
+      }`}>
       <div
         className={`
-        ${open ? "" : "hidden"}
-        fixed
         bg-white
-        z-10
+        z-20
         text-indigo2
         content-['']
-        w-11/12
-        xs:w-[512px]
+        mx-4
+        mt-4
+        mb-8
+        sm:m-auto
         h-min
-        inset-1/2
-        -translate-x-1/2
-        -translate-y-1/2
         border
-        border-solid
-        border-grey2
         rounded-2xl
+        relative
         `}>
         {/* Settings header */}
         <div className="px-8 py-4 items-center flex justify-between">
@@ -76,7 +75,8 @@ const SettingsModal: React.FC<ISettingsModal> = ({ isOpen }) => {
           <ColorSelector {...mockColorSelectorProps}></ColorSelector>
         </div>
 
-        <div className="w-full absolute -translate-y-1/2 flex">
+        {/* Button */}
+        <div className="w-full absolute -translate-y-1/2 flex z-30">
           <button
             onClick={() => setOpen(false)}
             className="
@@ -84,7 +84,6 @@ const SettingsModal: React.FC<ISettingsModal> = ({ isOpen }) => {
               mx-auto
               px-8
               py-2
-              z-20
               text-white
               rounded-full
               font-bold
@@ -94,11 +93,11 @@ const SettingsModal: React.FC<ISettingsModal> = ({ isOpen }) => {
         </div>
       </div>
 
-      <div
+      {/* <div
         className={`
         ${open ? "" : "hidden"}
-        fixed w-full h-full bg-[#0A0C1C] bg-opacity-50 top-0 left-0`}></div>
-    </>
+        fixed w-full h-full bg-[#0A0C1C] bg-opacity-50 top-0 left-0 z-10`}></div> */}
+    </div>
   );
 };
 
