@@ -1,3 +1,4 @@
+import { useState } from "react";
 import ColorSelector from "../color-selector/ColorSelector";
 import { mockColorSelectorProps } from "../color-selector/ColorSelector.mocks";
 import FontSelector from "../font-selector/FontSelector";
@@ -10,11 +11,13 @@ export interface ISettingsModal {
 }
 
 const SettingsModal: React.FC<ISettingsModal> = ({ isOpen }) => {
+  const [open, setOpen] = useState(isOpen);
+
   return (
     <>
       <div
         className={`
-        ${isOpen ? "" : "hidden"}
+        ${open ? "" : "hidden"}
         fixed
         bg-white
         z-10
@@ -36,7 +39,7 @@ const SettingsModal: React.FC<ISettingsModal> = ({ isOpen }) => {
           <h1 className="text-indigo2 text-[20px] sm:text-h2 font-bold">
             Settings
           </h1>
-          <button>
+          <button onClick={() => setOpen(false)}>
             <svg
               width="14"
               height="14"
@@ -72,10 +75,28 @@ const SettingsModal: React.FC<ISettingsModal> = ({ isOpen }) => {
         <div className="px-8 py-4">
           <ColorSelector {...mockColorSelectorProps}></ColorSelector>
         </div>
+
+        <div className="w-full absolute -translate-y-1/2 flex">
+          <button
+            onClick={() => setOpen(false)}
+            className="
+              cursor-pointer
+              mx-auto
+              px-8
+              py-2
+              z-20
+              text-white
+              rounded-full
+              font-bold
+              bg-red">
+            Apply
+          </button>
+        </div>
       </div>
+
       <div
         className={`
-        ${isOpen ? "" : "hidden"}
+        ${open ? "" : "hidden"}
         fixed w-full h-full bg-[#0A0C1C] bg-opacity-50 top-0 left-0`}></div>
     </>
   );
