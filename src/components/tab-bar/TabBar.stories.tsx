@@ -1,6 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import TabBar, { ITabBar } from "./TabBar";
-import { mockTabBarProps } from "./TabBar.mocks";
+import TabBar from "./TabBar";
 
 const meta: Meta<typeof TabBar> = {
   title: "components/Tab Bar",
@@ -12,7 +11,3 @@ export default meta;
 export const SelectedPomodoro: StoryObj<typeof TabBar> = {
   render: (args) => <TabBar {...args} />,
 };
-
-SelectedPomodoro.args = {
-  ...mockTabBarProps,
-} as ITabBar;
