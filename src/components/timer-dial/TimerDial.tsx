@@ -31,7 +31,7 @@ const TextColor: Record<ThemeColors, `text-${ThemeColors}`> = {
 const secondsToMinutesString = (seconds: number) =>
   parseInt(`${seconds}`).toString().padStart(2, "0");
 
-const TimerDial: React.FC<ITimerDial> = ({ id, timeLeft, timeDuration }) => {
+const TimerDial: React.FC<ITimerDial> = ({ timeLeft, timeDuration }) => {
   const [timeRemaining, setTimeRemaining] = useState(timeLeft);
   const { color } = useContext(ThemeContext);
   const [paused, setPaused] = useState(true);
@@ -70,7 +70,7 @@ const TimerDial: React.FC<ITimerDial> = ({ id, timeLeft, timeDuration }) => {
   };
 
   return (
-    <div className={styles.timer} id={id}>
+    <div className={styles.timer}>
       <svg className={`h-full w-full ${TextColor[color]}`}>
         <circle
           cx="50%"

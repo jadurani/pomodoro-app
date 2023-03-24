@@ -8,9 +8,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center h-full">
-      <h2 className="text-[24px] sm:text-h2 text-grey my-4">
-        pomodoro {isModalOpen ? "isOpen" : "naur"}
-      </h2>
+      <h2 className="text-[24px] sm:text-h2 text-grey my-4">pomodoro</h2>
       <TabBar />
       <div className="my-8">
         <TimerDial timeDuration={1500} timeLeft={900} />

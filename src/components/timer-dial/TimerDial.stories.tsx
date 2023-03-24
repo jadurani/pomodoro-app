@@ -18,7 +18,6 @@ export const Timer: StoryObj<typeof TimerDial> = {
 };
 
 Timer.args = {
-  id: "pomodoro",
   timeDuration: 1500,
   timeLeft: 900,
 };
