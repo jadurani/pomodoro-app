@@ -1,4 +1,3 @@
-import { useState } from "react";
 import ColorSelector from "../color-selector/ColorSelector";
 import { mockColorSelectorProps } from "../color-selector/ColorSelector.mocks";
 import FontSelector from "../font-selector/FontSelector";
@@ -8,16 +7,24 @@ import "./SettingsModal.module.css";
 
 export interface ISettingsModal {
   isOpen: boolean;
+  setIsOpen: (v: boolean) => void;
 }
 
-const SettingsModal: React.FC<ISettingsModal> = ({ isOpen }) => {
-  const [open, setOpen] = useState(isOpen);
-
+const SettingsModal: React.FC<ISettingsModal> = ({ isOpen, setIsOpen }) => {
   return (
     <div
-      className={`fixed top-0 left-0 h-full w-full sm:flex items-center justify-center overflow-x-hidden overflow-y-scroll ${
-        open ? "" : "hidden"
-      }`}>
+      className={`
+      fixed
+      top-0
+      left-0
+      h-full
+      w-full
+      items-center
+      justify-center
+      overflow-x-hidden
+      overflow-y-scroll
+      flex
+      ${isOpen ? "sm:flex" : "hidden sm:hidden"}`}>
       <div
         className={`
         bg-white
@@ -38,7 +45,7 @@ const SettingsModal: React.FC<ISettingsModal> = ({ isOpen }) => {
           <h1 className="text-indigo2 text-[20px] sm:text-h2 font-bold">
             Settings
           </h1>
-          <button onClick={() => setOpen(false)}>
+          <button onClick={() => setIsOpen(false)}>
             <svg
               width="14"
               height="14"
@@ -78,7 +85,7 @@ const SettingsModal: React.FC<ISettingsModal> = ({ isOpen }) => {
         {/* Button */}
         <div className="w-full absolute -translate-y-1/2 flex z-30">
           <button
-            onClick={() => setOpen(false)}
+            onClick={() => setIsOpen(false)}
             className="
               cursor-pointer
               mx-auto
@@ -92,11 +99,13 @@ const SettingsModal: React.FC<ISettingsModal> = ({ isOpen }) => {
           </button>
         </div>
       </div>
-
-      {/* <div
+      {/* Backdrop */}
+      <div
         className={`
-        ${open ? "" : "hidden"}
-        fixed w-full h-full bg-[#0A0C1C] bg-opacity-50 top-0 left-0 z-10`}></div> */}
+        ${isOpen ? "" : "hidden"}
+        fixed w-full h-full
+        bg-[#0A0C1C] bg-opacity-50
+        top-0 left-0 z-10`}></div>
     </div>
   );
 };

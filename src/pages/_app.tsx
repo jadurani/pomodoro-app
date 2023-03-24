@@ -21,7 +21,7 @@ export const SpaceMono = Space_Mono({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <main className={`${KumbhSans.variable} font-sans`}>
+    <main className={`${KumbhSans.variable} font-sans w-full h-full`}>
       <ThemeProvider>
         <Component {...pageProps} />
       </ThemeProvider>

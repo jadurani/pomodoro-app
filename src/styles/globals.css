@@ -2,8 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
+html,
+body,
+#__next {
   @apply bg-indigo1 text-grey1;
+  @apply h-full w-full;
 }
 
 @layer base {
