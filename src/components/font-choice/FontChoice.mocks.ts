@@ -1,13 +1,16 @@
+import { ThemeFonts } from "@/state/theme/ThemeContext";
 import { IFontChoice } from "./FontChoice";
 
 const selected: IFontChoice = {
-  id: "short-break",
+  id: ThemeFonts.SANS,
   isSelected: true,
+  chooseFont: (f: ThemeFonts) => undefined,
 };
 
 const unSelected: IFontChoice = {
-  id: "short-break",
+  id: ThemeFonts.SANS,
   isSelected: false,
+  chooseFont: (f: ThemeFonts) => undefined,
 };
 
 export const mockFontChoiceProps = {

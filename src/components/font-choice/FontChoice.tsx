@@ -1,16 +1,19 @@
+import { ThemeFonts } from "@/state/theme/ThemeContext";
 import "./FontChoice.module.css";
 
 export interface IFontChoice {
-  id: string;
+  id: ThemeFonts;
   isSelected: boolean;
+  chooseFont: (f: ThemeFonts) => void;
 }
 
-const FontChoice: React.FC<IFontChoice> = ({ id, isSelected }) => {
+const FontChoice: React.FC<IFontChoice> = ({ id, isSelected, chooseFont }) => {
   const selectedClasses = "bg-indigo2 text-white";
   const unselectedClasses = "bg-grey2 text-indigo1 text-opacity-75";
   return (
     <button
       id={id}
+      onClick={() => chooseFont(id)}
       className={`rounded-full w-10 h-10 font-bold text-[15px] relative
         hover:after:absolute
         hover:after:content-['']

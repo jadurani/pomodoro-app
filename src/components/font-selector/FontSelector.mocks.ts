@@ -1,22 +1,7 @@
-import { IFontChoice } from "../font-choice/FontChoice";
+import { ThemeFonts } from "@/state/theme/ThemeContext";
 import { IFontSelector } from "./FontSelector";
 
-const shortBreak: IFontChoice = {
-  id: "short-break",
-  isSelected: false,
-};
-
-const longBreak: IFontChoice = {
-  id: "long-break",
-  isSelected: false,
-};
-
-const pomodoro: IFontChoice = {
-  id: "pomodoro",
-  isSelected: false,
-};
-
 export const mockFontSelectorProps: IFontSelector = {
-  selectedFont: pomodoro.id,
-  fontChoiceList: [shortBreak, longBreak, pomodoro],
+  selectedFont: ThemeFonts.SANS,
+  chooseFont: (f: ThemeFonts) => undefined,
 };

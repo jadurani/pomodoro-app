@@ -15,28 +15,28 @@ export enum ThemeFonts {
   MONO = "font-mono",
 }
 
-export const NextFonts: Record<ThemeFonts, ThemeFont> = {
+export const NextFonts: Record<ThemeFonts, EvaluatedNextThemeFont> = {
   [ThemeFonts.SANS]: `${KumbhSans.variable} ${ThemeFonts.SANS}`,
   [ThemeFonts.SERIF]: `${RobotoSlab.variable} ${ThemeFonts.SERIF}`,
   [ThemeFonts.MONO]: `${SpaceMono.variable} ${ThemeFonts.MONO}`,
 };
 
-type ThemeFont = `${string} ${ThemeFonts}`;
+type EvaluatedNextThemeFont = `${string} ${ThemeFonts}`;
 
 interface IThemeContext {
   color: ThemeColors;
   setColor: (color: ThemeColors) => void;
 
-  font: ThemeFont;
-  setFont: (themeFont: ThemeFont) => void;
+  font: ThemeFonts;
+  setFont: (themeFont: ThemeFonts) => void;
 }
 
 const defaultValue: IThemeContext = {
   color: ThemeColors.RED,
   setColor: (color: ThemeColors) => undefined,
 
-  font: NextFonts[ThemeFonts.SANS],
-  setFont: (themeFont: ThemeFont) => undefined,
+  font: ThemeFonts.SANS,
+  setFont: (themeFont: ThemeFonts) => undefined,
 };
 
 const ThemeContext = createContext<IThemeContext>(defaultValue);

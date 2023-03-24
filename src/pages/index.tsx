@@ -1,13 +1,16 @@
 import SettingsModal from "@/components/settings-modal/SettingsModal";
 import TabBar from "@/components/tab-bar/TabBar";
 import TimerDial from "@/components/timer-dial/TimerDial";
-import { useState } from "react";
+import ThemeContext, { NextFonts } from "@/state/theme/ThemeContext";
+import { useContext, useState } from "react";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(true);
+  const { font } = useContext(ThemeContext);
+  const fontClasses = NextFonts[font];
 
   return (
-    <div className="flex flex-col items-center h-full">
+    <div className={`flex flex-col items-center h-full ${fontClasses}`}>
       <h2 className="text-[24px] sm:text-h2 text-grey my-4">pomodoro</h2>
       <TabBar />
       <div className="my-8">

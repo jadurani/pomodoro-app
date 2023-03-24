@@ -2,7 +2,6 @@ import ThemeContext from "@/state/theme/ThemeContext";
 import { useContext, useState } from "react";
 import ColorSelector from "../color-selector/ColorSelector";
 import FontSelector from "../font-selector/FontSelector";
-import { mockFontSelectorProps } from "../font-selector/FontSelector.mocks";
 import TimeSettings from "../time-settings/TimeSettings";
 import "./SettingsModal.module.css";
 
@@ -12,15 +11,18 @@ export interface ISettingsModal {
 }
 
 const SettingsModal: React.FC<ISettingsModal> = ({ isOpen, setIsOpen }) => {
-  const { color, setColor } = useContext(ThemeContext);
+  const { color, setColor, font, setFont } = useContext(ThemeContext);
   const [tempColor, setTempColor] = useState(color);
+  const [tempFont, setTempFont] = useState(font);
 
   const handleClose = (doSave: boolean) => {
     if (doSave) {
       setColor(tempColor);
+      setFont(tempFont);
     } else {
       // reset local state to initial state
       setTempColor(color);
+      setTempFont(font);
     }
 
     setIsOpen(false);
@@ -92,7 +94,9 @@ const SettingsModal: React.FC<ISettingsModal> = ({ isOpen, setIsOpen }) => {
         <hr className="opacity-10 sm:mx-8" />
 
         <div className="px-8 py-4">
-          <FontSelector {...mockFontSelectorProps}></FontSelector>
+          <FontSelector
+            selectedFont={tempFont}
+            chooseFont={setTempFont}></FontSelector>
         </div>
 
         <hr className="opacity-10 sm:mx-8" />
