@@ -1,5 +1,6 @@
+import ThemeContext from "@/state/theme/ThemeContext";
+import { useContext, useState } from "react";
 import ColorSelector from "../color-selector/ColorSelector";
-import { mockColorSelectorProps } from "../color-selector/ColorSelector.mocks";
 import FontSelector from "../font-selector/FontSelector";
 import { mockFontSelectorProps } from "../font-selector/FontSelector.mocks";
 import TimeSettings from "../time-settings/TimeSettings";
@@ -11,6 +12,24 @@ export interface ISettingsModal {
 }
 
 const SettingsModal: React.FC<ISettingsModal> = ({ isOpen, setIsOpen }) => {
+  const { color, setColor } = useContext(ThemeContext);
+  const [tempColor, setTempColor] = useState(color);
+
+  const handleClose = (doSave: boolean) => {
+    if (doSave) {
+      setColor(tempColor);
+    } else {
+      // reset local state to initial state
+      setTempColor(color);
+    }
+
+    setIsOpen(false);
+  };
+
+  if (!isOpen) {
+    return <></>;
+  }
+
   return (
     <div
       className={`
@@ -23,8 +42,8 @@ const SettingsModal: React.FC<ISettingsModal> = ({ isOpen, setIsOpen }) => {
       justify-center
       overflow-x-hidden
       overflow-y-scroll
-      flex
-      ${isOpen ? "sm:flex" : "hidden sm:hidden"}`}>
+      sm:flex
+      }`}>
       <div
         className={`
         bg-white
@@ -45,7 +64,7 @@ const SettingsModal: React.FC<ISettingsModal> = ({ isOpen, setIsOpen }) => {
           <h1 className="text-indigo2 text-[20px] sm:text-h2 font-bold">
             Settings
           </h1>
-          <button onClick={() => setIsOpen(false)}>
+          <button onClick={() => handleClose(false)}>
             <svg
               width="14"
               height="14"
@@ -79,14 +98,16 @@ const SettingsModal: React.FC<ISettingsModal> = ({ isOpen, setIsOpen }) => {
         <hr className="opacity-10 sm:mx-8" />
 
         <div className="px-8 py-4">
-          <ColorSelector {...mockColorSelectorProps}></ColorSelector>
+          <ColorSelector
+            selectedColor={tempColor}
+            chooseColor={setTempColor}></ColorSelector>
         </div>
 
         {/* Button */}
         <div className="w-full absolute -translate-y-1/2 flex z-30">
           <button
-            onClick={() => setIsOpen(false)}
-            className="
+            onClick={() => handleClose(true)}
+            className={`
               cursor-pointer
               mx-auto
               px-8
@@ -94,7 +115,7 @@ const SettingsModal: React.FC<ISettingsModal> = ({ isOpen, setIsOpen }) => {
               text-white
               rounded-full
               font-bold
-              bg-red">
+              bg-${color}`}>
             Apply
           </button>
         </div>
@@ -102,7 +123,6 @@ const SettingsModal: React.FC<ISettingsModal> = ({ isOpen, setIsOpen }) => {
       {/* Backdrop */}
       <div
         className={`
-        ${isOpen ? "" : "hidden"}
         fixed w-full h-full
         bg-[#0A0C1C] bg-opacity-50
         top-0 left-0 z-10`}></div>

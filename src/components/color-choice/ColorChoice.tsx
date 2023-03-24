@@ -2,9 +2,10 @@ import { ThemeColors } from "@/state/theme/ThemeContext";
 import "./ColorChoice.module.css";
 
 export interface IColorChoice {
-  id: string;
+  id: ThemeColors;
   color: ThemeColors;
   isSelected: boolean;
+  chooseColor: (id: ThemeColors) => void;
 }
 
 const ButtonColor: Record<ThemeColors, `bg-${ThemeColors}`> = {
@@ -13,10 +14,17 @@ const ButtonColor: Record<ThemeColors, `bg-${ThemeColors}`> = {
   [ThemeColors.MAGENTA]: "bg-magenta",
 };
 
-const ColorChoice: React.FC<IColorChoice> = ({ id, color, isSelected }) => {
+const ColorChoice: React.FC<IColorChoice> = ({
+  id,
+  color,
+  isSelected,
+  chooseColor,
+}) => {
+  // const { setColor } = useContext(ThemeContext);
   return (
     <button
       id={id}
+      onClick={() => chooseColor(id)}
       className={`
         ${ButtonColor[color]}
         rounded-full w-10 h-10 font-bold text-[15px] relative

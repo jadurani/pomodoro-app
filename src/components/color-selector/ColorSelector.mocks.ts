@@ -1,26 +1,7 @@
 import { ThemeColors } from "@/state/theme/ThemeContext";
-import { IColorChoice } from "../color-choice/ColorChoice";
-import { IColorSelector } from "./ColorSelector";
-
-const redChoice: IColorChoice = {
-  id: ThemeColors.RED,
-  color: ThemeColors.RED,
-  isSelected: false,
-};
-
-const tealChoice: IColorChoice = {
-  id: ThemeColors.TEAL,
-  color: ThemeColors.TEAL,
-  isSelected: false,
-};
-
-const magentaChoice: IColorChoice = {
-  id: ThemeColors.MAGENTA,
-  color: ThemeColors.MAGENTA,
-  isSelected: false,
-};
+import { IColorSelector, defaultColorChoices } from "./ColorSelector";
 
 export const mockColorSelectorProps: IColorSelector = {
-  selectedColor: magentaChoice.color,
-  colorChoiceList: [redChoice, tealChoice, magentaChoice],
+  selectedColor: defaultColorChoices[0].id as ThemeColors,
+  chooseColor: (id: ThemeColors) => undefined,
 };
