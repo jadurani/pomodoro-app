@@ -1,4 +1,5 @@
 import { ThemeProvider } from "@/state/theme/ThemeContext";
+import { TimerProvider } from "@/state/timer/TimerContext";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { Kumbh_Sans, Roboto_Slab, Space_Mono } from "next/font/google";
@@ -22,9 +23,11 @@ export const SpaceMono = Space_Mono({
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <main className={`${KumbhSans.variable} font-sans w-full h-full`}>
-      <ThemeProvider>
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <TimerProvider>
+        <ThemeProvider>
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </TimerProvider>
     </main>
   );
 }

@@ -1,4 +1,4 @@
-import { ThemeColors } from "@/state/theme/ThemeContext";
+import { BackgroundColor, ThemeColors } from "@/state/theme/ThemeContext";
 import "./ColorChoice.module.css";
 
 export interface IColorChoice {
@@ -7,12 +7,6 @@ export interface IColorChoice {
   isSelected: boolean;
   chooseColor: (id: ThemeColors) => void;
 }
-
-const ButtonColor: Record<ThemeColors, `bg-${ThemeColors}`> = {
-  [ThemeColors.RED]: "bg-red",
-  [ThemeColors.TEAL]: "bg-teal",
-  [ThemeColors.MAGENTA]: "bg-magenta",
-};
 
 const ColorChoice: React.FC<IColorChoice> = ({
   id,
@@ -26,7 +20,7 @@ const ColorChoice: React.FC<IColorChoice> = ({
       id={id}
       onClick={() => chooseColor(id)}
       className={`
-        ${ButtonColor[color]}
+        ${BackgroundColor[color]}
         rounded-full w-10 h-10 font-bold text-[15px] relative
         hover:after:absolute
         hover:after:content-['']

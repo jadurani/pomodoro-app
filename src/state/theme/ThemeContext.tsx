@@ -53,3 +53,9 @@ export const ThemeProvider: React.FC<PropsWithChildren> = ({ children }) => {
 };
 
 export default ThemeContext;
+
+export const BackgroundColor: Record<ThemeColors, `bg-${ThemeColors}`> = {
+  [ThemeColors.RED]: "bg-red",
+  [ThemeColors.TEAL]: "bg-teal",
+  [ThemeColors.MAGENTA]: "bg-magenta",
+};

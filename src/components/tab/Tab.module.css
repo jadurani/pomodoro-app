@@ -1,15 +1,10 @@
-input:checked ~ label {
-  color: #1e213f;
-  background-color: #f87070;
-}
-
-label {
+.tabLabel {
   transition-property: color, background-color, box-shadow, transform, filter,
     backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 300ms;
 }
 
-label:hover {
+.tabLabel:hover {
   box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.25);
 }

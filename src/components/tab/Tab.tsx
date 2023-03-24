@@ -1,27 +1,32 @@
-import "./Tab.module.css";
+import ThemeContext, { BackgroundColor } from "@/state/theme/ThemeContext";
+import { TimerVariants } from "@/state/timer/TimerContext";
+import { useContext } from "react";
+import styles from "./Tab.module.css";
 
 export interface ITab {
   text: string;
-  id: string;
+  id: TimerVariants;
   isSelected: boolean;
+  selectTab: (id: TimerVariants) => void;
 }
 
-const Tab: React.FC<ITab> = ({ text, id, isSelected }) => (
-  <>
-    <input
-      type="radio"
-      name="tabs"
-      className="hidden"
-      id={id}
-      value={id}
-      checked={isSelected}
-    />
-    <label
-      htmlFor={id}
-      className="cursor-pointer px-4 py-2 text-grey1 rounded-full">
+const Tab: React.FC<ITab> = ({ text, id, isSelected, selectTab }) => {
+  const { color } = useContext(ThemeContext);
+
+  return (
+    <button
+      onClick={() => selectTab(id)}
+      className={`
+        cursor-pointer
+        px-4 py-2 rounded-full
+
+        ${styles.tabLabel}
+        ${
+          isSelected ? BackgroundColor[color] + " text-indigo1" : "text-grey1"
+        }`}>
       {text}
-    </label>
-  </>
-);
+    </button>
+  );
+};
 
 export default Tab;
