@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import ThemeContext, { ThemeColors } from "@/state/theme/ThemeContext";
+import { useContext, useEffect, useState } from "react";
 import styles from "./TimerDial.module.css";
 
 export interface ITimerDial {
-  id: string;
   /**
    * Time left in seconds
    */
@@ -22,11 +22,18 @@ const ONE_MINUTE = 60;
  */
 const ONE_SECOND = 1000;
 
+const TextColor: Record<ThemeColors, `text-${ThemeColors}`> = {
+  [ThemeColors.RED]: "text-red",
+  [ThemeColors.TEAL]: "text-teal",
+  [ThemeColors.MAGENTA]: "text-magenta",
+};
+
 const secondsToMinutesString = (seconds: number) =>
   parseInt(`${seconds}`).toString().padStart(2, "0");
 
 const TimerDial: React.FC<ITimerDial> = ({ id, timeLeft, timeDuration }) => {
   const [timeRemaining, setTimeRemaining] = useState(timeLeft);
+  const { color } = useContext(ThemeContext);
   const [paused, setPaused] = useState(true);
 
   const circleLength = (timeDuration - timeRemaining) / timeDuration;
@@ -64,7 +71,7 @@ const TimerDial: React.FC<ITimerDial> = ({ id, timeLeft, timeDuration }) => {
 
   return (
     <div className={styles.timer} id={id}>
-      <svg className="h-full w-full text-red">
+      <svg className={`h-full w-full ${TextColor[color]}`}>
         <circle
           cx="50%"
           cy="50%"

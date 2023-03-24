@@ -1,4 +1,5 @@
 import SettingsModal from "@/components/settings-modal/SettingsModal";
+import TimerDial from "@/components/timer-dial/TimerDial";
 import { useState } from "react";
 
 export default function Home() {
@@ -10,6 +11,7 @@ export default function Home() {
         pomodoro {isModalOpen ? "isOpen" : "naur"}
       </h2>
 
+      <TimerDial timeDuration={1500} timeLeft={900} />
       <button className="my-12" onClick={() => setIsModalOpen(true)}>
         <svg
           width="28"
