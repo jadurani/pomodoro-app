@@ -1,4 +1,5 @@
 import ThemeContext from "@/state/theme/ThemeContext";
+import TimerContext from "@/state/timer/TimerContext";
 import { useContext, useState } from "react";
 import ColorSelector from "../color-selector/ColorSelector";
 import FontSelector from "../font-selector/FontSelector";
@@ -12,17 +13,22 @@ export interface ISettingsModal {
 
 const SettingsModal: React.FC<ISettingsModal> = ({ isOpen, setIsOpen }) => {
   const { color, setColor, font, setFont } = useContext(ThemeContext);
+  const { timerDurations, setTimerDuration } = useContext(TimerContext);
+
   const [tempColor, setTempColor] = useState(color);
   const [tempFont, setTempFont] = useState(font);
+  const [tempDurations, setTempDurations] = useState(timerDurations);
 
   const handleClose = (doSave: boolean) => {
     if (doSave) {
       setColor(tempColor);
       setFont(tempFont);
+      setTimerDuration(tempDurations);
     } else {
       // reset local state to initial state
       setTempColor(color);
       setTempFont(font);
+      setTempDurations(timerDurations);
     }
 
     setIsOpen(false);
@@ -88,7 +94,9 @@ const SettingsModal: React.FC<ISettingsModal> = ({ isOpen, setIsOpen }) => {
         <hr className="opacity-10" />
 
         <div className="px-8 py-4">
-          <TimeSettings></TimeSettings>
+          <TimeSettings
+            durations={tempDurations}
+            setDurations={setTempDurations}></TimeSettings>
         </div>
 
         <hr className="opacity-10 sm:mx-8" />

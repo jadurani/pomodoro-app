@@ -1,4 +1,4 @@
-import { PropsWithChildren, createContext, useState } from "react";
+import { createContext, PropsWithChildren, useState } from "react";
 
 export enum TimerVariants {
   POMODORO = "pomodoro",
@@ -6,14 +6,15 @@ export enum TimerVariants {
   LONG = "long-break",
 }
 
-type TimerVariantDurationID = `${TimerVariants}-duration`;
+export type TimerVariantDurationID = `${TimerVariants}-duration`;
+export type TimerDurations = Record<TimerVariantDurationID, number>;
 
 type ITimerContext = {
   activeTimer: TimerVariants;
   setActiveTimer: (variant: TimerVariants) => void;
 
-  timerDurations: Record<TimerVariantDurationID, number>;
-  setTimerDuration: (td: Record<TimerVariantDurationID, number>) => void;
+  timerDurations: TimerDurations;
+  setTimerDuration: (td: TimerDurations) => void;
 };
 
 const defaultValue: ITimerContext = {
@@ -25,7 +26,7 @@ const defaultValue: ITimerContext = {
     "short-break-duration": 5,
     "long-break-duration": 15,
   },
-  setTimerDuration: (td: Record<TimerVariantDurationID, number>) => undefined,
+  setTimerDuration: (td: TimerDurations) => undefined,
 };
 
 const TimerContext = createContext<ITimerContext>(defaultValue);
