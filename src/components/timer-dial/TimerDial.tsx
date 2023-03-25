@@ -1,4 +1,5 @@
 import ThemeContext, { ThemeColors } from "@/state/theme/ThemeContext";
+import TimerContext from "@/state/timer/TimerContext";
 import { useContext, useEffect, useState } from "react";
 import styles from "./TimerDial.module.css";
 
@@ -6,7 +7,7 @@ export interface ITimerDial {
   /**
    * Time left in seconds
    */
-  timeLeft: number;
+  timeRemaining: number;
   /**
    * Full time duration in seconds
    */
@@ -22,6 +23,12 @@ const ONE_MINUTE = 60;
  */
 const ONE_SECOND = 1000;
 
+const convertMinutesToSeconds = (minutes: number): number =>
+  minutes * ONE_MINUTE;
+
+const convertSecondsToMinutes = (seconds: number): number =>
+  seconds / ONE_MINUTE;
+
 const TextColor: Record<ThemeColors, `text-${ThemeColors}`> = {
   [ThemeColors.RED]: "text-red",
   [ThemeColors.TEAL]: "text-teal",
@@ -31,16 +38,19 @@ const TextColor: Record<ThemeColors, `text-${ThemeColors}`> = {
 const secondsToMinutesString = (seconds: number) =>
   parseInt(`${seconds}`).toString().padStart(2, "0");
 
-const TimerDial: React.FC<ITimerDial> = ({ timeLeft, timeDuration }) => {
-  const [timeRemaining, setTimeRemaining] = useState(timeLeft);
+const TimerDial: React.FC<ITimerDial> = ({ timeRemaining, timeDuration }) => {
+  const { setTimeRemaining } = useContext(TimerContext);
   const { color } = useContext(ThemeContext);
   const [paused, setPaused] = useState(true);
 
-  const circleLength = (timeDuration - timeRemaining) / timeDuration;
-  const minutesTime = secondsToMinutesString(timeRemaining / ONE_MINUTE);
-  const secondsTime = secondsToMinutesString(timeRemaining % ONE_MINUTE);
+  const secTimeDuration = convertMinutesToSeconds(timeDuration);
+  const secTimeRemaining = convertMinutesToSeconds(timeRemaining);
+
+  const circleLength = (secTimeDuration - secTimeRemaining) / secTimeDuration;
+  const minutesTime = secondsToMinutesString(secTimeRemaining / ONE_MINUTE);
+  const secondsTime = secondsToMinutesString(secTimeRemaining % ONE_MINUTE);
   const timeDisplay = `${minutesTime}:${secondsTime}`;
-  const isFinished = timeRemaining <= 0;
+  const isFinished = secTimeRemaining <= 0;
 
   let buttonText = "Pause";
   if (paused) {
@@ -53,12 +63,13 @@ const TimerDial: React.FC<ITimerDial> = ({ timeLeft, timeDuration }) => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       if (!paused && !isFinished) {
-        setTimeRemaining((t) => t - 1);
+        const minutesRemaining = convertSecondsToMinutes(secTimeRemaining - 1);
+        setTimeRemaining(minutesRemaining);
       }
     }, ONE_SECOND);
 
     return () => clearInterval(intervalId);
-  }, [paused, isFinished]);
+  }, [paused, isFinished, secTimeRemaining, setTimeRemaining]);
 
   const handleToggle = () => {
     setPaused(!paused);

@@ -1,11 +1,11 @@
-import { TimerVariantDurationID } from "@/state/timer/TimerContext";
+import { TimerVariants } from "@/state/timer/TimerContext";
 import { IInput } from "./Input";
 
 const pomodoro: IInput = {
-  id: "pomodoro-duration",
+  id: TimerVariants.POMODORO,
   label: "pomodoro",
   value: 25,
-  setValue: (id: TimerVariantDurationID, v: number) => undefined,
+  setValue: (id: TimerVariants, v: number) => undefined,
 };
 
 export const mockInputProps = {

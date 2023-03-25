@@ -1,7 +1,8 @@
-import {
+import TimerContext, {
   TimerDurations,
-  TimerVariantDurationID,
+  TimerVariants,
 } from "@/state/timer/TimerContext";
+import { useContext } from "react";
 import Input from "../input/Input";
 import "./TimeSettings.module.css";
 
@@ -14,12 +15,17 @@ const TimeSettings: React.FC<ITimerSettings> = ({
   durations,
   setDurations,
 }) => {
-  const handleDurationChange = (id: TimerVariantDurationID, v: number) => {
+  const { activeTimer, setTimeRemaining } = useContext(TimerContext);
+  const handleDurationChange = (id: TimerVariants, v: number) => {
     const newDurations = {
       ...durations,
       [id]: v,
     };
     setDurations(newDurations);
+
+    if (activeTimer === id) {
+      setTimeRemaining(v);
+    }
   };
 
   return (
@@ -29,23 +35,23 @@ const TimeSettings: React.FC<ITimerSettings> = ({
       </h3>
       <div className="flex flex-col sm:flex-row gap-4 my-4">
         <Input
-          id="pomodoro-duration"
+          id={TimerVariants.POMODORO}
           label="pomodoro"
-          value={durations["pomodoro-duration"]}
+          value={durations[TimerVariants.POMODORO]}
           setValue={handleDurationChange}
         />
 
         <Input
-          id="short-break-duration"
+          id={TimerVariants.SHORT}
           label="short break"
-          value={durations["short-break-duration"]}
+          value={durations[TimerVariants.SHORT]}
           setValue={handleDurationChange}
         />
 
         <Input
-          id="long-break-duration"
+          id={TimerVariants.LONG}
           label="long break"
-          value={durations["long-break-duration"]}
+          value={durations[TimerVariants.LONG]}
           setValue={handleDurationChange}
         />
       </div>

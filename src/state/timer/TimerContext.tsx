@@ -6,12 +6,14 @@ export enum TimerVariants {
   LONG = "long-break",
 }
 
-export type TimerVariantDurationID = `${TimerVariants}-duration`;
-export type TimerDurations = Record<TimerVariantDurationID, number>;
+export type TimerDurations = Record<TimerVariants, number>;
 
 type ITimerContext = {
   activeTimer: TimerVariants;
   setActiveTimer: (variant: TimerVariants) => void;
+
+  timeRemaining: number;
+  setTimeRemaining: (t: number) => void;
 
   timerDurations: TimerDurations;
   setTimerDuration: (td: TimerDurations) => void;
@@ -21,10 +23,13 @@ const defaultValue: ITimerContext = {
   activeTimer: TimerVariants.POMODORO,
   setActiveTimer: (variant: TimerVariants) => undefined,
 
+  timeRemaining: 0,
+  setTimeRemaining: (t: number) => undefined,
+
   timerDurations: {
-    "pomodoro-duration": 25,
-    "short-break-duration": 5,
-    "long-break-duration": 15,
+    pomodoro: 25,
+    "short-break": 5,
+    "long-break": 15,
   },
   setTimerDuration: (td: TimerDurations) => undefined,
 };
@@ -37,9 +42,20 @@ export const TimerProvider: React.FC<PropsWithChildren> = ({ children }) => {
     defaultValue.timerDurations
   );
 
+  const defaultTimeRemaining =
+    defaultValue.timerDurations[defaultValue.activeTimer];
+  const [timeRemaining, setTimeRemaining] = useState(defaultTimeRemaining);
+
   return (
     <TimerContext.Provider
-      value={{ activeTimer, setActiveTimer, timerDurations, setTimerDuration }}>
+      value={{
+        activeTimer,
+        setActiveTimer,
+        timeRemaining,
+        setTimeRemaining,
+        timerDurations,
+        setTimerDuration,
+      }}>
       {children}
     </TimerContext.Provider>
   );

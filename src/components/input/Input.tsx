@@ -1,11 +1,11 @@
-import { TimerVariantDurationID } from "@/state/timer/TimerContext";
+import { TimerVariants } from "@/state/timer/TimerContext";
 import "./Input.module.css";
 
 export interface IInput {
-  id: TimerVariantDurationID;
+  id: TimerVariants;
   label: string;
   value: number;
-  setValue: (id: TimerVariantDurationID, v: number) => void;
+  setValue: (id: TimerVariants, v: number) => void;
 }
 
 enum Delta {

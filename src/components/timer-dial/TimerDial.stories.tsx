@@ -19,5 +19,5 @@ export const Timer: StoryObj<typeof TimerDial> = {
 
 Timer.args = {
   timeDuration: 1500,
-  timeLeft: 900,
+  timeRemaining: 900,
 };
