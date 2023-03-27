@@ -21,13 +21,13 @@ const ONE_MINUTE = 60;
 /**
  * How many milliseconds in a second
  */
-const ONE_SECOND = 1000;
+const ONE_SECOND = 100;
 
 const convertMinutesToSeconds = (minutes: number): number =>
-  minutes * ONE_MINUTE;
+  +(minutes * ONE_MINUTE).toFixed(2);
 
 const convertSecondsToMinutes = (seconds: number): number =>
-  seconds / ONE_MINUTE;
+  +(seconds / ONE_MINUTE).toFixed(2);
 
 const TextColor: Record<ThemeColors, `text-${ThemeColors}`> = {
   [ThemeColors.RED]: "text-red",
@@ -37,13 +37,10 @@ const TextColor: Record<ThemeColors, `text-${ThemeColors}`> = {
 
 const getButtonText = (
   paused: boolean,
-  secTimeRemaining: number,
-  secTimeDuration: number
+  isFinished: boolean,
+  isDefault: boolean
 ): string => {
-  const isFinished = secTimeDuration <= 0;
-  const isDefault = secTimeRemaining === secTimeDuration;
-
-  if (!paused) {
+  if (!paused && !isFinished) {
     return "Pause";
   }
 
@@ -72,9 +69,10 @@ const TimerDial: React.FC<ITimerDial> = ({ timeRemaining, timeDuration }) => {
   const minutesTime = secondsToMinutesString(secTimeRemaining / ONE_MINUTE);
   const secondsTime = secondsToMinutesString(secTimeRemaining % ONE_MINUTE);
   const timeDisplay = `${minutesTime}:${secondsTime}`;
-  const isFinished = secTimeRemaining <= 0;
 
-  const buttonText = getButtonText(paused, secTimeRemaining, secTimeDuration);
+  const isFinished = secTimeRemaining <= 0;
+  const isDefault = secTimeRemaining === secTimeDuration;
+  const buttonText = getButtonText(paused, isFinished, isDefault);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
