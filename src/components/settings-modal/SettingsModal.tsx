@@ -85,7 +85,9 @@ const SettingsModal: React.FC<ISettingsModal> = ({ isOpen, setIsOpen }) => {
           <h1 className="text-indigo2 text-[20px] sm:text-h2 font-bold">
             Settings
           </h1>
-          <button onClick={() => handleClose(false)}>
+          <button
+            aria-label="close-settings-modal-without-saving"
+            onClick={() => handleClose(false)}>
             <svg
               width="14"
               height="14"
@@ -131,6 +133,7 @@ const SettingsModal: React.FC<ISettingsModal> = ({ isOpen, setIsOpen }) => {
         {/* Button */}
         <div className="w-full absolute -translate-y-1/2 flex z-30">
           <button
+            aria-label="apply-and-close-settings-modal-button"
             onClick={() => handleClose(true)}
             className={`
               cursor-pointer

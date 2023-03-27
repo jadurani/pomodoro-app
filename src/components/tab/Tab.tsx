@@ -15,6 +15,7 @@ const Tab: React.FC<ITab> = ({ text, id, isSelected, selectTab }) => {
 
   return (
     <button
+      aria-label={`select-timer-${id}`}
       onClick={() => selectTab(id)}
       className={`
         cursor-pointer

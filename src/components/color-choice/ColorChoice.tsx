@@ -14,9 +14,9 @@ const ColorChoice: React.FC<IColorChoice> = ({
   isSelected,
   chooseColor,
 }) => {
-  // const { setColor } = useContext(ThemeContext);
   return (
     <button
+      aria-label={`color-option-${color}`}
       id={id}
       onClick={() => chooseColor(id)}
       className={`

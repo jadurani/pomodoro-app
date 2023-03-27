@@ -38,6 +38,7 @@ const Input: React.FC<IInput> = ({ id, label, value, setValue }) => {
         <span className="inline-flex flex-col">
           {/* Up button */}
           <button
+            aria-label={`increase-time-${id}`}
             className="opacity-25 hover:opacity-100 transition-opacity py-1"
             onClick={() => handleChange(Delta.INC)}>
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="7">
@@ -52,6 +53,7 @@ const Input: React.FC<IInput> = ({ id, label, value, setValue }) => {
 
           {/* Down button */}
           <button
+            aria-label={`decrease-time-${id}`}
             className="opacity-25 hover:opacity-100 transition-opacity py-1"
             onClick={() => handleChange(Delta.DEC)}>
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="7">

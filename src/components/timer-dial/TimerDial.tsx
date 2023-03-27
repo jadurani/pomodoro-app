@@ -115,6 +115,7 @@ const TimerDial: React.FC<ITimerDial> = ({ timeRemaining, timeDuration }) => {
         </text>
       </svg>
       <button
+        aria-label="toggle-timer"
         className="uppercase text-grey text-h3 absolute left-1/2 -translate-x-1/2 bottom-1/3 text-center"
         onClick={() => handleToggle()}>
         {buttonText}

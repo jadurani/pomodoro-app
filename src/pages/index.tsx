@@ -29,6 +29,7 @@ export default function Home() {
         />
       </div>
       <button
+        aria-label="open-settings"
         className="my-8 text-grey1 opacity-50 hover:opacity-100"
         onClick={() => setIsModalOpen(true)}>
         <svg

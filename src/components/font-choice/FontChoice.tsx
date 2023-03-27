@@ -14,6 +14,7 @@ const FontChoice: React.FC<IFontChoice> = ({ id, isSelected, chooseFont }) => {
     <button
       id={id}
       onClick={() => chooseFont(id)}
+      aria-label={`font-option-${id}`}
       className={`rounded-full w-10 h-10 font-bold text-[15px] relative
         hover:after:absolute
         hover:after:content-['']
