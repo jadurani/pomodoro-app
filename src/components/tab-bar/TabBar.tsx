@@ -27,9 +27,13 @@ const pomodoro: ITab = {
 const defaultTabList = [pomodoro, shortBreak, longBreak];
 
 const TabBar: React.FC = () => {
-  const { activeTimer, setActiveTimer } = useContext(TimerContext);
+  const { activeTimer, setActiveTimer, timerDurations, setTimeRemaining } =
+    useContext(TimerContext);
+
   const handleSelect = (v: TimerVariants) => {
     setActiveTimer(v);
+    const timeDuration = timerDurations[v];
+    setTimeRemaining(timeDuration);
   };
 
   return (
