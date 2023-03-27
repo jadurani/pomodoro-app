@@ -13,25 +13,38 @@ export interface ISettingsModal {
 
 const SettingsModal: React.FC<ISettingsModal> = ({ isOpen, setIsOpen }) => {
   const { color, setColor, font, setFont } = useContext(ThemeContext);
-  const { timerDurations, setTimerDuration } = useContext(TimerContext);
+  const { activeTimer, timerDurations, setTimerDuration } =
+    useContext(TimerContext);
 
   const [tempColor, setTempColor] = useState(color);
   const [tempFont, setTempFont] = useState(font);
   const [tempDurations, setTempDurations] = useState(timerDurations);
 
   const handleClose = (doSave: boolean) => {
-    if (doSave) {
-      setColor(tempColor);
-      setFont(tempFont);
-      setTimerDuration(tempDurations);
-    } else {
+    setIsOpen(false);
+
+    if (!doSave) {
       // reset local state to initial state
       setTempColor(color);
       setTempFont(font);
       setTempDurations(timerDurations);
+
+      return;
     }
 
-    setIsOpen(false);
+    setColor(tempColor);
+    setFont(tempFont);
+
+    let continueChange = true;
+    if (timerDurations[activeTimer] !== tempDurations[activeTimer]) {
+      continueChange = confirm(
+        "Changing the time durations will reset the countdown. Continue?"
+      );
+    }
+
+    if (continueChange) {
+      setTimerDuration(tempDurations);
+    }
   };
 
   if (!isOpen) {
