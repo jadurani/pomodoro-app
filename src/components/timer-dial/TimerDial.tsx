@@ -35,6 +35,29 @@ const TextColor: Record<ThemeColors, `text-${ThemeColors}`> = {
   [ThemeColors.MAGENTA]: "text-magenta",
 };
 
+const getButtonText = (
+  paused: boolean,
+  secTimeRemaining: number,
+  secTimeDuration: number
+): string => {
+  const isFinished = secTimeDuration <= 0;
+  const isDefault = secTimeRemaining === secTimeDuration;
+
+  if (!paused) {
+    return "Pause";
+  }
+
+  if (isDefault) {
+    return "Start";
+  }
+
+  if (isFinished) {
+    return "Restart";
+  }
+
+  return "Resume";
+};
+
 const secondsToMinutesString = (seconds: number) =>
   parseInt(`${seconds}`).toString().padStart(2, "0");
 
@@ -51,13 +74,7 @@ const TimerDial: React.FC<ITimerDial> = ({ timeRemaining, timeDuration }) => {
   const timeDisplay = `${minutesTime}:${secondsTime}`;
   const isFinished = secTimeRemaining <= 0;
 
-  let buttonText = "Pause";
-  if (paused) {
-    buttonText = "Resume";
-  }
-  if (isFinished) {
-    buttonText = "Restart";
-  }
+  const buttonText = getButtonText(paused, secTimeRemaining, secTimeDuration);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -81,7 +98,7 @@ const TimerDial: React.FC<ITimerDial> = ({ timeRemaining, timeDuration }) => {
 
   return (
     <div className={styles.timer}>
-      <svg className={`h-full w-full ${TextColor[color]}`}>
+      <svg className={`h-full w-full ${TextColor[color]} transition-colors`}>
         <circle
           cx="50%"
           cy="50%"
