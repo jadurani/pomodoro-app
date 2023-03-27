@@ -44,7 +44,7 @@ const Input: React.FC<IInput> = ({ id, label, value, setValue }) => {
               <path
                 fill="none"
                 stroke="#1E213F"
-                stroke-width="2"
+                strokeWidth="2"
                 d="M1 6l6-4 6 4"
               />
             </svg>
@@ -58,7 +58,7 @@ const Input: React.FC<IInput> = ({ id, label, value, setValue }) => {
               <path
                 fill="none"
                 stroke="#1E213F"
-                stroke-width="2"
+                strokeWidth="2"
                 d="M1 1l6 4 6-4"
               />
             </svg>

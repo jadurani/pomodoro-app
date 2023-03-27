@@ -43,7 +43,7 @@ const ColorChoice: React.FC<IColorChoice> = ({
         <path
           d="M1 5.5L4.95263 9.45263L13.4053 1"
           stroke="#161932"
-          stroke-width="2"
+          strokeWidth="2"
         />
       </svg>
     </button>
