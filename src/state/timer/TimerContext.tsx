@@ -12,6 +12,9 @@ type ITimerContext = {
   activeTimer: TimerVariants;
   setActiveTimer: (variant: TimerVariants) => void;
 
+  paused: boolean;
+  setPaused: (p: boolean) => void;
+
   timeRemaining: number;
   setTimeRemaining: (t: number) => void;
 
@@ -22,6 +25,9 @@ type ITimerContext = {
 const defaultValue: ITimerContext = {
   activeTimer: TimerVariants.POMODORO,
   setActiveTimer: (variant: TimerVariants) => undefined,
+
+  paused: true,
+  setPaused: (p: boolean) => undefined,
 
   timeRemaining: 0,
   setTimeRemaining: (t: number) => undefined,
@@ -38,6 +44,8 @@ const TimerContext = createContext<ITimerContext>(defaultValue);
 
 export const TimerProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [activeTimer, setActiveTimer] = useState(defaultValue.activeTimer);
+  const [paused, setPaused] = useState(defaultValue.paused);
+
   const [timerDurations, setTimerDuration] = useState(
     defaultValue.timerDurations
   );
@@ -51,6 +59,8 @@ export const TimerProvider: React.FC<PropsWithChildren> = ({ children }) => {
       value={{
         activeTimer,
         setActiveTimer,
+        paused,
+        setPaused,
         timeRemaining,
         setTimeRemaining,
         timerDurations,

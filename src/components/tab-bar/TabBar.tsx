@@ -27,13 +27,31 @@ const pomodoro: ITab = {
 const defaultTabList = [pomodoro, shortBreak, longBreak];
 
 const TabBar: React.FC = () => {
-  const { activeTimer, setActiveTimer, timerDurations, setTimeRemaining } =
-    useContext(TimerContext);
+  const {
+    activeTimer,
+    setActiveTimer,
+    paused,
+    setPaused,
+    timerDurations,
+    setTimeRemaining,
+  } = useContext(TimerContext);
 
   const handleSelect = (v: TimerVariants) => {
+    let continueChange = true;
+    if (!paused) {
+      continueChange = confirm(
+        "Changing the active timer will reset the countdown. Continue?"
+      );
+    }
+
+    if (!continueChange) {
+      return;
+    }
+
     setActiveTimer(v);
     const timeDuration = timerDurations[v];
     setTimeRemaining(timeDuration);
+    setPaused(true);
   };
 
   return (

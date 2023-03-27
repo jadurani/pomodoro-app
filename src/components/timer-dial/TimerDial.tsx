@@ -1,6 +1,6 @@
 import ThemeContext, { ThemeColors } from "@/state/theme/ThemeContext";
 import TimerContext from "@/state/timer/TimerContext";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import styles from "./TimerDial.module.css";
 
 export interface ITimerDial {
@@ -39,9 +39,8 @@ const secondsToMinutesString = (seconds: number) =>
   parseInt(`${seconds}`).toString().padStart(2, "0");
 
 const TimerDial: React.FC<ITimerDial> = ({ timeRemaining, timeDuration }) => {
-  const { setTimeRemaining } = useContext(TimerContext);
+  const { paused, setPaused, setTimeRemaining } = useContext(TimerContext);
   const { color } = useContext(ThemeContext);
-  const [paused, setPaused] = useState(true);
 
   const secTimeDuration = convertMinutesToSeconds(timeDuration);
   const secTimeRemaining = convertMinutesToSeconds(timeRemaining);
