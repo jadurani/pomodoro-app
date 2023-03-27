@@ -21,7 +21,7 @@ const ONE_MINUTE = 60;
 /**
  * How many milliseconds in a second
  */
-const ONE_SECOND = 100;
+const ONE_SECOND = 1000;
 
 const convertMinutesToSeconds = (minutes: number): number =>
   +(minutes * ONE_MINUTE).toFixed(2);

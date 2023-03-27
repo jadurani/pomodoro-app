@@ -19,7 +19,7 @@ const Tab: React.FC<ITab> = ({ text, id, isSelected, selectTab }) => {
       className={`
         cursor-pointer
         px-4 py-2 rounded-full
-
+        text-body2 sm:text-body1
         ${styles.tabLabel}
         ${
           isSelected ? BackgroundColor[color] + " text-indigo1" : "text-grey1"
