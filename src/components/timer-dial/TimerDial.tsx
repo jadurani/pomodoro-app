@@ -2,6 +2,7 @@ import ThemeContext, { ThemeColors } from "@/state/theme/ThemeContext";
 import TimerContext from "@/state/timer/TimerContext";
 import { useContext, useEffect } from "react";
 import styles from "./TimerDial.module.css";
+// import alarmAudio from "/doorbell.mp3";
 
 export interface ITimerDial {
   /**
@@ -79,6 +80,12 @@ const TimerDial: React.FC<ITimerDial> = ({ timeRemaining, timeDuration }) => {
       if (!paused && !isFinished) {
         const minutesRemaining = convertSecondsToMinutes(secTimeRemaining - 1);
         setTimeRemaining(minutesRemaining);
+      } else if (isFinished) {
+        // play audio on timeout
+        const audio = new Audio("/audio/doorbell.mp3");
+        audio.play();
+        // force timeout to stop
+        clearInterval(intervalId);
       }
     }, ONE_SECOND);
 
