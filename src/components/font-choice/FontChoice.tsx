@@ -1,4 +1,4 @@
-import { ThemeFonts } from "@/state/theme/ThemeContext";
+import { NextFonts, ThemeFonts } from "@/state/theme/ThemeContext";
 import "./FontChoice.module.css";
 
 export interface IFontChoice {
@@ -27,6 +27,7 @@ const FontChoice: React.FC<IFontChoice> = ({ id, isSelected, chooseFont }) => {
         hover:after:border-solid
         hover:after:border-grey2
         hover:after:rounded-full
+        ${NextFonts[id]}
         ${isSelected ? selectedClasses : unselectedClasses}`}>
       Aa
     </button>
